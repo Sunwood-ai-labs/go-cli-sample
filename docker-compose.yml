@@ -17,8 +17,8 @@ services:
       - GOOS=linux
       - GOARCH=amd64
     # アプリケーションを実行
-    command: ["./go-cli-sample", "Docker環境から実行だよ〜"]
-
+    command: ["go-cli-sample", "Docker環境から実行だよ〜"]
+    
   # テスト実行用サービス
   test:
     build:

@@ -1,3 +1,4 @@
 mode: set
-github.com/Sunwood-ai-labs/go-cli-sample/main.go:8.13,10.22 2 1
-github.com/Sunwood-ai-labs/go-cli-sample/main.go:10.22,12.3 1 1
+github.com/Sunwood-ai-labs/go-cli-sample/main.go:8.20,19.2 2 1
+github.com/Sunwood-ai-labs/go-cli-sample/main.go:21.13,24.22 3 1
+github.com/Sunwood-ai-labs/go-cli-sample/main.go:24.22,26.3 1 1

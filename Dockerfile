@@ -20,8 +20,8 @@ COPY . .
 # テストレポート用のディレクトリを作成
 RUN mkdir -p test-reports
 
-# アプリケーションをビルド
-RUN go build -o go-cli-sample main.go
+# アプリケーションをビルド（コンテナ外へのマウントで失われないディレクトリに配置）
+RUN go build -o /usr/local/bin/go-cli-sample main.go
 
 # デフォルトのコマンドを設定
-CMD ["./go-cli-sample"]
+CMD ["go-cli-sample"]

@@ -1,7 +1,7 @@
 goos: linux
 goarch: amd64
 pkg: github.com/Sunwood-ai-labs/go-cli-sample
-cpu: Intel(R) Xeon(R) CPU @ 2.60GHz
-BenchmarkMain-16    	  227283	      5159 ns/op	      48 B/op	       1 allocs/op
+cpu: AMD Ryzen 7 5825U with Radeon Graphics         
+BenchmarkMain-8   	 1000000	      1005 ns/op	     112 B/op	       3 allocs/op
 PASS
-ok  	github.com/Sunwood-ai-labs/go-cli-sample	1.239s
+ok  	github.com/Sunwood-ai-labs/go-cli-sample	1.020s
