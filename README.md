@@ -13,12 +13,12 @@
 
 これはGo言語で作ったシンプルなCLIツールのサンプルだよ〜！✨
 
-## 概要
+## 📖 概要
 
 このプロジェクトは、Go言語でCLIツールを作成する基本的な例を提供します。
 コマンドライン引数の処理や標準出力の使い方を学ぶことができます。
 
-## 必要要件
+## 📋 必要要件
 
 ### ローカル開発の場合
 - Go 1.16以上
@@ -27,7 +27,7 @@
 - Docker
 - Docker Compose
 
-## セットアップ
+## 🚀 セットアップ
 
 ```bash
 # リポジトリをクローン
@@ -38,7 +38,7 @@ cd go-cli-sample
 go mod download
 ```
 
-## 使い方
+## 💻 使い方
 
 ### 基本的な実行
 
@@ -60,7 +60,7 @@ go build
 ./go-cli-sample "引数だよん"
 ```
 
-## テスト
+## 🧪 テスト
 
 ### テストの実行
 
@@ -83,7 +83,7 @@ go tool cover -html=test-reports/coverage.out -o test-reports/coverage.html
 go test -bench=. -benchmem
 ```
 
-## Docker環境での実行
+## 🐳 Docker環境での実行
 
 ### Docker Composeでアプリケーションを実行
 
@@ -110,7 +110,7 @@ docker-compose run --rm dev
 
 詳しくは [Go言語初心者向けガイド](docs/GETTING_STARTED_JA.md) を参照してください。
 
-## テストレポート
+## 📊 テストレポート
 
 テスト結果とカバレッジレポートは `test-reports/` ディレクトリに生成されます：
 
@@ -119,7 +119,15 @@ docker-compose run --rm dev
 - `test-results.txt` - テスト実行結果
 - `benchmark-results.txt` - ベンチマーク結果
 
-## プロジェクト構成
+### 🌐 オンラインでカバレッジレポートを確認
+
+GitHub Pagesで最新のテストカバレッジレポートを確認できます：
+
+👉 **[カバレッジレポートを見る](https://sunwood-ai-labs.github.io/go-cli-sample/)** 📈✨
+
+mainブランチにpushされるたびに自動的に更新されます！
+
+## 📁 プロジェクト構成
 
 ```
 .
@@ -135,7 +143,7 @@ docker-compose run --rm dev
 └── test-reports/        # テストレポート出力ディレクトリ
 ```
 
-## 機能
+## ✨ 機能
 
 - コマンドライン引数の受け取り
 - 標準出力への出力
