@@ -119,7 +119,7 @@ docker-compose run --rm dev
 - `test-results.txt` - テスト実行結果
 - `benchmark-results.txt` - ベンチマーク結果
 
-### 🌐 オンラインでカバレッジレポートを確認
+## 🌐 オンラインでカバレッジレポートを確認
 
 GitHub Pagesで最新のテストカバレッジレポートを確認できます：
 
