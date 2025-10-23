@@ -1,18 +1,50 @@
-<svg width="100%" height="150" xmlns="http://www.w3.org/2000/svg">
+<svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#FF6B9D;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#C44569;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FF6B9D;stop-opacity:1" />
+    <!-- Main gradient -->
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ADD8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00758F;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#007D9C;stop-opacity:1" />
     </linearGradient>
+
+    <!-- Accent gradient -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#29BEB0;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#00ADD8;stop-opacity:0.1" />
+    </linearGradient>
+
+    <!-- Text shadow filter -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
   </defs>
-  <rect width="100%" height="150" fill="url(#grad1)"/>
-  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#FFFFFF">
-    Go CLI Sample ✨
+
+  <!-- Background with rounded corners -->
+  <rect width="100%" height="200" rx="15" ry="15" fill="url(#mainGrad)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="10%" cy="30%" r="60" fill="url(#accentGrad)" opacity="0.4"/>
+  <circle cx="90%" cy="70%" r="80" fill="url(#accentGrad)" opacity="0.3"/>
+  <circle cx="85%" cy="20%" r="40" fill="url(#accentGrad)" opacity="0.5"/>
+
+  <!-- Decorative lines -->
+  <line x1="0" y1="0" x2="200" y2="200" stroke="#FFFFFF" stroke-width="2" opacity="0.1"/>
+  <line x1="100%" y1="0" x2="calc(100% - 200)" y2="200" stroke="#FFFFFF" stroke-width="2" opacity="0.1"/>
+
+  <!-- Main title -->
+  <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="52" font-weight="bold"
+        fill="#FFFFFF" filter="url(#shadow)">
+    Go CLI Sample
   </text>
-  <text x="50%" y="75%" dominant-baseline="middle" text-anchor="middle"
-        font-family="Arial, sans-serif" font-size="20" fill="#FFFFFF" opacity="0.9">
-    シンプルでイケてるCLIツール
+
+  <!-- Subtitle -->
+  <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle"
+        font-family="'Segoe UI', Arial, sans-serif" font-size="22"
+        fill="#FFFFFF" opacity="0.95" letter-spacing="1">
+    A Simple &amp; Elegant Command Line Tool
   </text>
+
+  <!-- Decorative underline -->
+  <line x1="30%" y1="75%" x2="70%" y2="75%" stroke="#FFFFFF" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
 </svg>
