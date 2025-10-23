@@ -1,0 +1,70 @@
+version: '3.8'
+
+services:
+  # Go CLI アプリケーション
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-cli-sample-app
+    volumes:
+      # ソースコードをマウント（開発時の変更を反映）
+      - .:/app
+      # テストレポートを永続化
+      - ./test-reports:/app/test-reports
+    environment:
+      # Go環境変数
+      - GOOS=linux
+      - GOARCH=amd64
+    # アプリケーションを実行
+    command: ["./go-cli-sample", "Docker環境から実行だよ〜"]
+
+  # テスト実行用サービス
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-cli-sample-test
+    volumes:
+      - .:/app
+      - ./test-reports:/app/test-reports
+    # テストとカバレッジレポートを生成
+    command: >
+      sh -c "
+        echo '📝 テストを実行中...' &&
+        go test -v -cover -coverprofile=test-reports/coverage.out ./... | tee test-reports/test-results.txt &&
+        echo '📊 カバレッジレポートを生成中...' &&
+        go tool cover -html=test-reports/coverage.out -o test-reports/coverage.html &&
+        echo '✅ テスト完了！'
+      "
+
+  # ベンチマーク実行用サービス
+  benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-cli-sample-benchmark
+    volumes:
+      - .:/app
+      - ./test-reports:/app/test-reports
+    # ベンチマークテストを実行
+    command: >
+      sh -c "
+        echo '🚀 ベンチマークを実行中...' &&
+        go test -bench=. -benchmem ./... | tee test-reports/benchmark-results.txt &&
+        echo '✅ ベンチマーク完了！'
+      "
+
+  # 開発用サービス（インタラクティブシェル）
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: go-cli-sample-dev
+    volumes:
+      - .:/app
+      - ./test-reports:/app/test-reports
+    # シェルを起動（開発用）
+    command: /bin/sh
+    stdin_open: true
+    tty: true

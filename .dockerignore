@@ -1,0 +1,43 @@
+# Git関連
+.git
+.gitignore
+
+# ビルド成果物
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+go-cli-sample
+
+# テストキャッシュ
+*.test
+*.out
+
+# ドキュメント
+*.md
+docs/
+generated-images/
+
+# 開発環境固有
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python関連（discord-issue-botなど）
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+discord-issue-bot/
+
+# その他の不要なファイル
+LICENSE
+*.svg
+index.html
+pyproject.toml
+uv.lock
+src/
