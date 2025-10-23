@@ -1,4 +1,4 @@
-<svg width="100%" height="200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <!-- Main gradient -->
     <linearGradient id="mainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -7,44 +7,70 @@
       <stop offset="100%" style="stop-color:#007D9C;stop-opacity:1" />
     </linearGradient>
 
-    <!-- Accent gradient -->
+    <!-- Accent gradient for decorations -->
     <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
       <stop offset="0%" style="stop-color:#29BEB0;stop-opacity:0.3" />
       <stop offset="100%" style="stop-color:#00ADD8;stop-opacity:0.1" />
     </linearGradient>
 
+    <!-- Glow gradient -->
+    <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#00ADD8;stop-opacity:0" />
+    </radialGradient>
+
     <!-- Text shadow filter -->
     <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.4"/>
+    </filter>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
 
   <!-- Background with rounded corners -->
-  <rect width="100%" height="200" rx="15" ry="15" fill="url(#mainGrad)"/>
+  <rect width="1200" height="300" rx="20" ry="20" fill="url(#mainGrad)"/>
 
-  <!-- Decorative circles -->
-  <circle cx="10%" cy="30%" r="60" fill="url(#accentGrad)" opacity="0.4"/>
-  <circle cx="90%" cy="70%" r="80" fill="url(#accentGrad)" opacity="0.3"/>
-  <circle cx="85%" cy="20%" r="40" fill="url(#accentGrad)" opacity="0.5"/>
+  <!-- Decorative elements -->
+  <circle cx="150" cy="100" r="80" fill="url(#accentGrad)" opacity="0.4"/>
+  <circle cx="1050" cy="200" r="100" fill="url(#accentGrad)" opacity="0.3"/>
+  <circle cx="1000" cy="80" r="60" fill="url(#accentGrad)" opacity="0.5"/>
+  <circle cx="200" cy="250" r="50" fill="url(#glowGrad)" opacity="0.6"/>
 
   <!-- Decorative lines -->
-  <line x1="0" y1="0" x2="200" y2="200" stroke="#FFFFFF" stroke-width="2" opacity="0.1"/>
-  <line x1="100%" y1="0" x2="calc(100% - 200)" y2="200" stroke="#FFFFFF" stroke-width="2" opacity="0.1"/>
+  <line x1="0" y1="0" x2="300" y2="300" stroke="#FFFFFF" stroke-width="2" opacity="0.1"/>
+  <line x1="1200" y1="0" x2="900" y2="300" stroke="#FFFFFF" stroke-width="2" opacity="0.1"/>
 
-  <!-- Main title -->
-  <text x="50%" y="45%" dominant-baseline="middle" text-anchor="middle"
-        font-family="'Segoe UI', Arial, sans-serif" font-size="52" font-weight="bold"
-        fill="#FFFFFF" filter="url(#shadow)">
+  <!-- Geometric shapes -->
+  <polygon points="100,20 120,60 80,60" fill="#FFFFFF" opacity="0.1"/>
+  <polygon points="1100,240 1120,280 1080,280" fill="#FFFFFF" opacity="0.1"/>
+
+  <!-- Main title with modern font -->
+  <text x="600" y="130" text-anchor="middle"
+        font-family="'SF Pro Display', 'Helvetica Neue', 'Segoe UI', -apple-system, sans-serif"
+        font-size="72" font-weight="700"
+        fill="#FFFFFF" filter="url(#shadow)" letter-spacing="2">
     Go CLI Sample
   </text>
 
-  <!-- Subtitle -->
-  <text x="50%" y="65%" dominant-baseline="middle" text-anchor="middle"
-        font-family="'Segoe UI', Arial, sans-serif" font-size="22"
-        fill="#FFFFFF" opacity="0.95" letter-spacing="1">
+  <!-- Subtitle with elegant font -->
+  <text x="600" y="190" text-anchor="middle"
+        font-family="'SF Pro Display', 'Helvetica Neue', 'Segoe UI', -apple-system, sans-serif"
+        font-size="28" font-weight="300"
+        fill="#FFFFFF" opacity="0.95" letter-spacing="3">
     A Simple &amp; Elegant Command Line Tool
   </text>
 
-  <!-- Decorative underline -->
-  <line x1="30%" y1="75%" x2="70%" y2="75%" stroke="#FFFFFF" stroke-width="2" opacity="0.5" stroke-linecap="round"/>
+  <!-- Decorative accent line -->
+  <line x1="400" y1="220" x2="800" y2="220" stroke="#FFFFFF" stroke-width="3" opacity="0.5" stroke-linecap="round" filter="url(#glow)"/>
+
+  <!-- Small decorative dots -->
+  <circle cx="380" cy="220" r="5" fill="#FFFFFF" opacity="0.7"/>
+  <circle cx="820" cy="220" r="5" fill="#FFFFFF" opacity="0.7"/>
 </svg>
