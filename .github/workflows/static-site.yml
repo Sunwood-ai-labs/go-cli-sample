@@ -1,5 +1,5 @@
 # .github/workflows/static-site.yml
-name: Deploy Static Site to Pages
+name: Deploy Test Coverage to Pages
 
 on:
   push:
@@ -25,13 +25,119 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Run tests and generate coverage report
+        run: |
+          mkdir -p test-reports
+          go test -v -coverprofile=test-reports/coverage.out
+          go tool cover -html=test-reports/coverage.out -o test-reports/coverage.html
+
+      - name: Create index page
+        run: |
+          cat > test-reports/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="ja">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Go CLI Sample - Test Reports</title>
+              <style>
+                  body {
+                      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+                      max-width: 800px;
+                      margin: 0 auto;
+                      padding: 40px 20px;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      min-height: 100vh;
+                  }
+                  .container {
+                      background: white;
+                      border-radius: 12px;
+                      padding: 40px;
+                      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                  }
+                  h1 {
+                      color: #2d3748;
+                      margin-bottom: 10px;
+                      font-size: 2.5em;
+                  }
+                  .subtitle {
+                      color: #718096;
+                      margin-bottom: 30px;
+                      font-size: 1.2em;
+                  }
+                  .card {
+                      background: #f7fafc;
+                      border-left: 4px solid #667eea;
+                      padding: 20px;
+                      margin: 20px 0;
+                      border-radius: 8px;
+                      transition: transform 0.2s;
+                  }
+                  .card:hover {
+                      transform: translateX(5px);
+                  }
+                  a {
+                      color: #667eea;
+                      text-decoration: none;
+                      font-weight: 600;
+                      font-size: 1.1em;
+                  }
+                  a:hover {
+                      color: #764ba2;
+                  }
+                  .description {
+                      color: #4a5568;
+                      margin-top: 10px;
+                      line-height: 1.6;
+                  }
+                  .emoji {
+                      font-size: 1.5em;
+                      margin-right: 10px;
+                  }
+              </style>
+          </head>
+          <body>
+              <div class="container">
+                  <h1>🧪 Go CLI Sample Test Reports</h1>
+                  <p class="subtitle">テストカバレッジレポート 📊✨</p>
+
+                  <div class="card">
+                      <a href="coverage.html">
+                          <span class="emoji">📈</span>
+                          カバレッジレポートを見る
+                      </a>
+                      <p class="description">
+                          コードのテストカバレッジを視覚的に確認できます。<br>
+                          どの部分がテストされているか、一目でわかるよ〜！🎀
+                      </p>
+                  </div>
+
+                  <div class="card">
+                      <p style="color: #4a5568; margin: 0;">
+                          <span class="emoji">🔗</span>
+                          <strong>GitHub Repository:</strong><br>
+                          <a href="https://github.com/Sunwood-ai-labs/go-cli-sample" target="_blank">
+                              Sunwood-ai-labs/go-cli-sample
+                          </a>
+                      </p>
+                  </div>
+              </div>
+          </body>
+          </html>
+          EOF
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: 'test-reports'
 
       - name: Deploy to GitHub Pages
         id: deployment
