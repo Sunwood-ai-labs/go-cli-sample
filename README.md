@@ -20,7 +20,12 @@
 
 ## 必要要件
 
+### ローカル開発の場合
 - Go 1.16以上
+
+### Docker環境の場合
+- Docker
+- Docker Compose
 
 ## セットアップ
 
@@ -78,6 +83,33 @@ go tool cover -html=test-reports/coverage.out -o test-reports/coverage.html
 go test -bench=. -benchmem
 ```
 
+## Docker環境での実行
+
+### Docker Composeでアプリケーションを実行
+
+```bash
+# アプリケーションを実行
+docker-compose up app
+
+# テストを実行
+docker-compose up test
+
+# ベンチマークを実行
+docker-compose up benchmark
+
+# 開発用シェルを起動
+docker-compose run --rm dev
+```
+
+### 利用可能なサービス
+
+- `app`: アプリケーションを実行
+- `test`: テストとカバレッジレポートを生成
+- `benchmark`: ベンチマークテストを実行
+- `dev`: 開発用インタラクティブシェル
+
+詳しくは [Go言語初心者向けガイド](docs/GETTING_STARTED_JA.md) を参照してください。
+
 ## テストレポート
 
 テスト結果とカバレッジレポートは `test-reports/` ディレクトリに生成されます：
@@ -85,15 +117,22 @@ go test -bench=. -benchmem
 - `coverage.out` - カバレッジデータ
 - `coverage.html` - HTMLカバレッジレポート
 - `test-results.txt` - テスト実行結果
+- `benchmark-results.txt` - ベンチマーク結果
 
 ## プロジェクト構成
 
 ```
 .
-├── main.go          # メインのCLIアプリケーション
-├── main_test.go     # テストコード
-├── README.md        # このファイル
-└── test-reports/    # テストレポート出力ディレクトリ
+├── main.go              # メインのCLIアプリケーション
+├── main_test.go         # テストコード
+├── go.mod               # Goモジュール定義
+├── Dockerfile           # Docker環境の定義
+├── docker-compose.yml   # Dockerサービスの構成
+├── .dockerignore        # Dockerビルドで除外するファイル
+├── README.md            # このファイル
+├── docs/
+│   └── GETTING_STARTED_JA.md  # Go言語初心者向けガイド
+└── test-reports/        # テストレポート出力ディレクトリ
 ```
 
 ## 機能
