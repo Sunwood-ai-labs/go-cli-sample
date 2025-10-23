@@ -1,4 +1,15 @@
-# Go CLI Sample
+<div align="center">
+
+![Header](./header.svg)
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white" alt="Go"/>
+  <img src="https://img.shields.io/badge/CLI-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="CLI"/>
+  <img src="https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge" alt="License"/>
+  <img src="https://img.shields.io/badge/Test-Passing-success?style=for-the-badge&logo=go" alt="Tests"/>
+</p>
+
+</div>
 
 これはGo言語で作ったシンプルなCLIツールのサンプルだよ〜！✨
 
