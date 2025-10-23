@@ -30,15 +30,50 @@ jobs:
         with:
           go-version: '1.21'
 
+      - name: Install dependencies
+        run: |
+          go mod download
+          go mod tidy
+
       - name: Run tests and generate coverage report
         run: |
           mkdir -p test-reports
-          go test -v -coverprofile=test-reports/coverage.out
+          # テスト実行 & カバレッジ生成🔥
+          go test -v -coverprofile=test-reports/coverage.out ./... 2>&1 | tee test-reports/test-output.txt
+
+          # カバレッジレポート(HTML)生成✨
           go tool cover -html=test-reports/coverage.out -o test-reports/coverage.html
+
+          # カバレッジパーセンテージ計算📊
+          COVERAGE=$(go tool cover -func=test-reports/coverage.out | grep total | awk '{print $3}')
+          echo "Total Coverage: $COVERAGE"
+          echo "$COVERAGE" > test-reports/coverage-percent.txt
+
+          # テスト結果のサマリー生成💕
+          if grep -q "FAIL" test-reports/test-output.txt; then
+            echo "FAILED" > test-reports/test-status.txt
+          else
+            echo "PASSED" > test-reports/test-status.txt
+          fi
 
       - name: Create index page
         run: |
-          cat > test-reports/index.html << 'EOF'
+          # カバレッジとステータスを取得✨
+          COVERAGE=$(cat test-reports/coverage-percent.txt)
+          TEST_STATUS=$(cat test-reports/test-status.txt)
+
+          # ステータスに応じた絵文字とカラー設定🎀
+          if [ "$TEST_STATUS" = "PASSED" ]; then
+            STATUS_EMOJI="✅"
+            STATUS_COLOR="#48bb78"
+            STATUS_TEXT="All Tests Passed"
+          else
+            STATUS_EMOJI="❌"
+            STATUS_COLOR="#f56565"
+            STATUS_TEXT="Tests Failed"
+          fi
+
+          cat > test-reports/index.html << EOF
           <!DOCTYPE html>
           <html lang="ja">
           <head>
@@ -70,6 +105,28 @@ jobs:
                       margin-bottom: 30px;
                       font-size: 1.2em;
                   }
+                  .stats {
+                      display: flex;
+                      gap: 20px;
+                      margin: 30px 0;
+                  }
+                  .stat-box {
+                      flex: 1;
+                      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                      color: white;
+                      padding: 20px;
+                      border-radius: 8px;
+                      text-align: center;
+                  }
+                  .stat-value {
+                      font-size: 2.5em;
+                      font-weight: bold;
+                      margin: 10px 0;
+                  }
+                  .stat-label {
+                      font-size: 0.9em;
+                      opacity: 0.9;
+                  }
                   .card {
                       background: #f7fafc;
                       border-left: 4px solid #667eea;
@@ -80,6 +137,15 @@ jobs:
                   }
                   .card:hover {
                       transform: translateX(5px);
+                  }
+                  .status-badge {
+                      display: inline-block;
+                      padding: 8px 16px;
+                      border-radius: 20px;
+                      background: ${STATUS_COLOR};
+                      color: white;
+                      font-weight: bold;
+                      margin: 10px 0;
                   }
                   a {
                       color: #667eea;
@@ -106,6 +172,19 @@ jobs:
                   <h1>🧪 Go CLI Sample Test Reports</h1>
                   <p class="subtitle">テストカバレッジレポート 📊✨</p>
 
+                  <div class="stats">
+                      <div class="stat-box">
+                          <div class="stat-label">Test Coverage</div>
+                          <div class="stat-value">${COVERAGE}</div>
+                          <div class="stat-label">コードカバレッジ率 🎯</div>
+                      </div>
+                      <div class="stat-box">
+                          <div class="stat-label">Test Status</div>
+                          <div class="stat-value">${STATUS_EMOJI}</div>
+                          <div class="stat-label">${STATUS_TEXT}</div>
+                      </div>
+                  </div>
+
                   <div class="card">
                       <a href="coverage.html">
                           <span class="emoji">📈</span>
@@ -114,6 +193,17 @@ jobs:
                       <p class="description">
                           コードのテストカバレッジを視覚的に確認できます。<br>
                           どの部分がテストされているか、一目でわかるよ〜！🎀
+                      </p>
+                  </div>
+
+                  <div class="card">
+                      <a href="test-output.txt">
+                          <span class="emoji">📝</span>
+                          テスト出力ログを見る
+                      </a>
+                      <p class="description">
+                          テストの詳細な出力結果をチェックできます。<br>
+                          エラーが出てたらここで確認してね！💪✨
                       </p>
                   </div>
 
