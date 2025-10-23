@@ -15,6 +15,14 @@ node_modules/
 dist/
 build/
 
+# Go build artifacts
+go-cli-sample
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
 discord-issue-bot/data/history.json
 discord-issue-bot/uv.lock
 .env.actions

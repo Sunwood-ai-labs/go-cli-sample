@@ -1,0 +1,9 @@
+=== RUN   TestMainOutput
+--- PASS: TestMainOutput (0.00s)
+=== RUN   TestMainWithArgument
+--- PASS: TestMainWithArgument (0.00s)
+=== RUN   TestMainWithMultipleArguments
+--- PASS: TestMainWithMultipleArguments (0.00s)
+PASS
+coverage: 100.0% of statements
+ok  	github.com/Sunwood-ai-labs/go-cli-sample	0.008s
