@@ -64,4 +64,58 @@ go build -o mycli
 ./mycli greet "ギャルエンジニア" -e "✨" -t 3
 ```
 
+## 📺 実行結果
+
+### ヘルプを表示
+
+```bash
+$ go run main.go
+```
+
+```
+Cobra を使ったサブコマンド対応 CLI ツールだよ〜！
+
+Usage:
+  mycli [command]
+
+Available Commands:
+  completion  Generate the autocompletion script for the specified shell
+  greet       挨拶するコマンドだよ 💕
+  help        Help about any command
+  info        システム情報を表示 📊
+
+Flags:
+  -h, --help      help for mycli
+  -v, --verbose   詳細表示モード 👀
+
+Use "mycli [command] --help" for more information about a command.
+```
+
+### greet サブコマンドを実行
+
+```bash
+$ go run main.go greet "ギャルエンジニア" -e "🎀" -t 2
+```
+
+```
+Hello, ギャルエンジニア! 🎀
+Hello, ギャルエンジニア! 🎀
+```
+
+### info サブコマンドを詳細モードで実行
+
+```bash
+$ go run main.go info -v
+```
+
+```
+=== システム情報 ===
+OS: Go Runtime
+CLI ツール: mycli v1.0.0
+Author: ギャルエンジニア 💕
+===================
+
+[DEBUG] 詳細モードで実行中 👀
+```
+
 プロっぽい CLI ツールが作れちゃうね！🔥✨

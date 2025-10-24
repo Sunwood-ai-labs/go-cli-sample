@@ -23,7 +23,13 @@ cd examples/04-interactive
 go run main.go
 ```
 
+## 📺 実行結果
+
 実行すると、こんな感じで質問されるよ〜：
+
+```bash
+$ go run main.go
+```
 
 ```
 🎀 インタラクティブ CLI ツール ✨
