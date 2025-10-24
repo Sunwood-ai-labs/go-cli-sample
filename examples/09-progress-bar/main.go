@@ -84,7 +84,6 @@ func downloadProgressBar(current, total int) {
 	percent := current * 100 / total
 	barLength := 30
 	filled := percent * barLength / 100
-	empty := barLength - filled
 
 	bar := ColorCyan
 	for i := 0; i < filled; i++ {
@@ -158,7 +157,7 @@ func main() {
 		"デプロイ中",
 	}
 
-	for i, step := range steps {
+	for _, step := range steps {
 		spinner(step, 1*time.Second)
 	}
 	fmt.Println()
