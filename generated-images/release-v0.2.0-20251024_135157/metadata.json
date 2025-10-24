@@ -1,0 +1,13 @@
+{
+  "generation_date": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "prompt": "a minimalistic line art of a sleepy axolotl, illustrated in 2D flat vector style. 
+Soft coral outline only on a powder blue background. No shadows, no details. Simplified shape, clean curves, and modern, abstract styling. 
+Add the text “go cli sample  - v0\.2\.0 - ” in an elegant serif font, center-aligned near the top, medium weight, clean kerning.",
+  "model": "imagen-4-ultra",
+  "num_images": 1,
+  "aspect_ratio": "16:9",
+  "seed": "",
+  "workflow_run": "2",
+  "commit_sha": "9ff1c61e0dd9eb9c1c830ea6f63e89377605977f",
+  "tag": "v0.2.0"
+}
